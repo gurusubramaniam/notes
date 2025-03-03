@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList, Modal, TextInput, Alert} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import NoteList from '@/components/NoteList';
 import AddNoteModal from '../../components/AddNoteModal';
 import noteService from '../../services/noteService';
@@ -22,11 +22,19 @@ const NotesScreen = () => {
         }
         setLoading(false);
     }
-    const addNote = () => {
+    const addNote =  async () => {
         if(newNote.trim() === '') {
             return;
         }
-        setNotes([...notes, {id: Date.now.toString(), text: newNote}]);
+        // setNotes([...notes, {id: Date.now.toString(), text: newNote}]);
+        // setNewNote('');
+        const response = await noteService.addNotes(newNote);
+        if(response.error) {
+            setError(response.error);
+            Alert.alert('Error', response.error);
+        } else {
+            setNotes([...notes, response.data]);
+        }
         setNewNote('');
         setModalVisible(false);
     }
