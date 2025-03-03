@@ -48,3 +48,11 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Env Local 
+EXPO_PUBLIC_APPWRITE_ENDPOINT="https://cloud.appwrite.io/v1"
+EXPO_PUBLIC_APPWRITE_PROJECT_ID="notes-project-guru"
+EXPO_PUBLIC_APPWRITE_DB_ID="notes-app-db"
+EXPO_PUBLIC_APPWRITE_COL_NOTES_ID="notes"
+EXPO_PUBLIC_APPWRITE_BUNDLE_ID="notes-app-iOS"
+EXPO_PUBLIC_APPWRITE_PACKAGE_NAME="notes-app-android"

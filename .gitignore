@@ -41,3 +41,4 @@ app-example
 
 # App specific ignore
 .history/
+.env
