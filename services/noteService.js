@@ -33,6 +33,17 @@ const noteService = {
     }
     return { data: response };
   },
+  async deleteNote(documentId) {
+    const response = await databaseService.deleteDocument(
+      dbId,
+      colId,
+      documentId
+    );
+    if (response.error) {
+      return { error: response.error };
+    }
+    return { success: true };
+  },
 };
 
 export default noteService;

@@ -24,6 +24,15 @@ const databaseService = {
       return { error: error.message };
     }
   },
+  async deleteDocument(dbId, collectionId, documentId) {
+    try {
+      await database.deleteDocument(dbId, collectionId, documentId);
+      return { success: true };
+    } catch (error) {
+      console.error('Error Deleting Document', error.message);
+      return { error: error };
+    }
+  },
 };
 
 export default databaseService;
