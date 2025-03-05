@@ -1,57 +1,81 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import postitImage from '../assets/images/post-it.png';
-import { useRouter } from "expo-router";
+import { useRouter } from 'expo-router';
+import { useAuth } from '@/context/AuthContext';
+import { ActivityIndicator } from 'react-native';
+import { useEffect } from 'react';
 const HomeScreen = () => {
+  const { user, loading } = useAuth();
   const Router = useRouter();
+  useEffect(() => {
+    if (!loading && user) {
+      Router.replace('/notes');
+    }
+  }, [user, loading]);
+  if (loading) {
+    return (
+      <View style={styles.centeredContainer}>
+        <ActivityIndicator size="large" color="#007bff" />
+      </View>
+    );
+  }
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <Image source={postitImage} style={styles.image} />
       <Text style={styles.title}>Welcome to Notes App</Text>
       <Text style={styles.subTitle}>Capture your thoughts anywhere</Text>
-      <TouchableOpacity style={styles.button} onPress={() => Router.push('/notes')}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => Router.push('/notes')}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
-    backgroundColor:'#f8f9fa'
+    backgroundColor: '#f8f9fa',
   },
-  image:{
-    width:100,
+  image: {
+    width: 100,
     height: 100,
     marginBottom: 20,
-    borderRadius:20
+    borderRadius: 20,
   },
-  title:{
+  title: {
     fontSize: 28,
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 10,
   },
-  subTitle:{
+  subTitle: {
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
     marginBottom: 20,
   },
-  button:{
+  button: {
     backgroundColor: '#007bff',
     paddingVertical: 12,
     paddingHorizontal: 25,
     padding: 8,
     alignItems: 'center',
   },
-  buttonText:{
+  buttonText: {
     color: 'white',
     fontSize: 18,
-    fontWeight:'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+  centeredContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    textAlign: 'center',
+    backgroundColor: '#f8f9fa',
+  },
+});
 
 export default HomeScreen;

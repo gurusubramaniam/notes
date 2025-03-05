@@ -1,10 +1,14 @@
 import { create } from 'react-test-renderer';
 import { database } from './appwrite';
 const databaseService = {
-  async listDocuments(dbId, collectionId) {
+  async listDocuments(dbId, collectionId, queries = []) {
     try {
-      const response = await database.listDocuments(dbId, collectionId);
-      return response.documents || [];
+      const response = await database.listDocuments(
+        dbId,
+        collectionId,
+        queries
+      );
+      return { data: response.documents || [], error: null };
     } catch (error) {
       console.error('Error Fetching Documents', error.message);
       return { error: error.message };
@@ -22,6 +26,15 @@ const databaseService = {
     } catch (error) {
       console.error('Error Creating Document', error.message);
       return { error: error.message };
+    }
+  },
+  async updatedDocument(dbId, collectionId, documentId, data) {
+    try {
+      await database.updateDocument(dbId, collectionId, documentId, data);
+      return { success: true };
+    } catch (error) {
+      console.error('Error Updating Document', error.message);
+      return { error: error };
     }
   },
   async deleteDocument(dbId, collectionId, documentId) {
