@@ -50,9 +50,12 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 ## Env Local 
-EXPO_PUBLIC_APPWRITE_ENDPOINT="https://cloud.appwrite.io/v1"
-EXPO_PUBLIC_APPWRITE_PROJECT_ID="notes-project-guru"
+EXPO_PUBLIC_APPWRITE_ENDPOINT=""
+EXPO_PUBLIC_APPWRITE_PROJECT_ID=""
 EXPO_PUBLIC_APPWRITE_DB_ID="notes-app-db"
 EXPO_PUBLIC_APPWRITE_COL_NOTES_ID="notes"
 EXPO_PUBLIC_APPWRITE_BUNDLE_ID="notes-app-iOS"
 EXPO_PUBLIC_APPWRITE_PACKAGE_NAME="notes-app-android"
+
+## Tech Details
+This project uses Expo, react Native, App write for the backend. 
