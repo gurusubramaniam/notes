@@ -59,3 +59,5 @@ EXPO_PUBLIC_APPWRITE_PACKAGE_NAME="notes-app-android"
 
 ## Tech Details
 This project uses Expo, react Native, App write for the backend. 
+
+https://cloud.appwrite.io/
